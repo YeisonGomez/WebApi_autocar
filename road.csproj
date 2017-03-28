@@ -92,11 +92,13 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Connections\Connection.cs" />
+    <Compile Include="Util\Response.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
     <Folder Include="Connections\" />
+    <Folder Include="Util\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

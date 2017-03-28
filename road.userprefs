@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{D8408D4A-8175-49C1-87D4-B68681A49046}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="road/Controllers/UserController.cs">
+    <Files>
+      <File FileName="road/Controllers/UserController.cs" Line="14" Column="13" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.road PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

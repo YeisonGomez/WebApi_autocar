@@ -7,7 +7,7 @@ namespace road
 {
 	public class Connection
 	{
-		private static MySqlConnection conexion = new MySqlConnection(ConfigurationManager.ConnectionStrings["road_test"].ConnectionString);
+		private static MySqlConnection conexion = new MySqlConnection(ConfigurationManager.ConnectionStrings["road_local"].ConnectionString);
 
 		private static bool Conectar()
 		{
@@ -30,13 +30,17 @@ namespace road
 
 		public DataTable RunProcedure(string name_procedure, string[] keys, string[] values)
 		{
-			using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["road_test"].ConnectionString))
+			using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["road_local"].ConnectionString))
 			{
 				using (MySqlCommand cmd = new MySqlCommand(name_procedure, con))
 				{
 					cmd.CommandType = CommandType.StoredProcedure;
-					for (int i = 0; i < keys.Length; i++) { 
-						cmd.Parameters.AddWithValue(keys[i], values[i]);
+					if (keys != null)
+					{
+						for (int i = 0; i < keys.Length; i++)
+						{
+							cmd.Parameters.AddWithValue(keys[i], values[i]);
+						}
 					}
 
 					using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))

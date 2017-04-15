@@ -15,6 +15,7 @@ namespace road
 			this.type = "error_null";
 			this.description = "No se han suministrado datos.";
 		}
+
 	}
 	
 }

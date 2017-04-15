@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Web;
 using System.Web.Http;
 
 namespace road
@@ -9,14 +12,29 @@ namespace road
 
 		UserModel userModel = new UserModel();
 		Response json = new Response();
+		Util util = new Util();
 
 		[Route("login")]
 		[HttpPost]
 		public IHttpActionResult Login([FromBody] UserModel user)
 		{
-			if (user != null && user.email != null && user.password != null && user.email.Length <= 100 && user.password.Length <= 100)
-			{
-				return Json(userModel.Login(user.email, user.password));
+			if (user != null && user.email != null && user.password != null && user.email.Length <= 100 && user.password.Length <= 100){
+				//HttpContext.Current.Request.UserAgent
+				DataTable response = userModel.Login(user.email, user.password);
+				if (response.Rows[0].ItemArray.GetValue(0).ToString() == "OK")
+				{
+					Token token = new Token();
+					String nombres = response.Rows[0].ItemArray.GetValue(1).ToString();
+					String apellidos = response.Rows[0].ItemArray.GetValue(2).ToString();
+					String foto = response.Rows[0].ItemArray.GetValue(3).ToString();
+
+					token.token = util.tokenSesion(nombres, apellidos, user.email, foto);
+					return Json(token);
+				}
+				else 
+				{ 
+					return Json(response);
+				}
 			}
 			else
 			{
@@ -24,11 +42,16 @@ namespace road
 			}
 		}
 
-		[Route("login2")]
+		[Route("test")]
 		[HttpGet]
 		public IHttpActionResult Test()
 		{
 			return Json("hola");
 		}
 	}
+
+	public class Token {
+		public String token { get; set; }
+	}
+
 }

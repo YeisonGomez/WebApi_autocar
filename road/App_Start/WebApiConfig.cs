@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Controllers;
 
 namespace road
 {
@@ -16,6 +17,14 @@ namespace road
 				routeTemplate: "api/{controller}/{id}",
 				defaults: new { id = RouteParameter.Optional }
 			);
+		}
+	}
+
+	public class LocalRequestOnlyAttribute : AuthorizeAttribute
+	{
+		protected override bool IsAuthorized(HttpActionContext context)
+		{
+			return context.RequestContext.IsLocal;
 		}
 	}
 }

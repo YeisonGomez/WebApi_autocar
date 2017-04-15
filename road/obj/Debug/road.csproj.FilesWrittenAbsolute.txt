@@ -15,3 +15,9 @@
 /Users/YeisonGomez/Projects/road/road/bin/System.Web.WebPages.dll
 /Users/YeisonGomez/Projects/road/road/bin/System.Web.WebPages.Razor.dll
 /Users/YeisonGomez/Projects/road/road/bin/System.Web.Mvc.dll
+/Users/YeisonGomez/Projects/road/road/bin/Microsoft.Owin.Host.HttpListener.dll
+/Users/YeisonGomez/Projects/road/road/bin/Owin.dll
+/Users/YeisonGomez/Projects/road/road/bin/Microsoft.Owin.dll
+/Users/YeisonGomez/Projects/road/road/bin/System.Web.Http.Owin.dll
+/Users/YeisonGomez/Projects/road/road/bin/Microsoft.Owin.Hosting.dll
+/Users/YeisonGomez/Projects/road/road/bin/JWT.dll

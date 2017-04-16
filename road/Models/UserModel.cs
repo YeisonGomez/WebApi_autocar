@@ -8,7 +8,7 @@ namespace road
 	{
 		public Response response = new Response();
 		public int id { get; set; }
-		public int empresa_id { get; set; }
+		public String empresa_id { get; set; }
 		public String nombres { get; set; }
 		public String apellidos { get; set; }
 		public int genero { get; set; }
@@ -16,6 +16,7 @@ namespace road
 		public String password { get; set; }
 		public int celular { get; set; }
 		public int fecha_registro { get; set; }
+		public String foto { get; set; }
 
 		public UserModel()
 		{
@@ -54,6 +55,21 @@ namespace road
 					respons = response.MysqlException("duplicate_email", "El correo ya existe.");	
 				}
 			}
+			return respons;
+		}
+
+		public DataTable GetPermissions(String email) { 
+			String[] keys = { "p_email" };
+			String[] values = { email };
+			DataTable respons = con.RunProcedure("GET_PERMISSIONS", keys, values);
+			return respons;
+		}
+
+		public DataTable GetRols(String email)
+		{
+			String[] keys = { "p_email" };
+			String[] values = { email };
+			DataTable respons = con.RunProcedure("GET_ROLS", keys, values);
 			return respons;
 		}
 	}

@@ -5,15 +5,30 @@ using System.Web.Http;
 namespace road
 {
 	[RoutePrefix("api/vehicle")]
-    public class VehicleController : ApiController
-    {
+	public class VehicleController : ApiController
+	{
 		VehicleModel vehicleModel = new VehicleModel();
+		Util util = new Util();
 
-        [Route("all")]
+		[Route("all")]
 		[HttpGet]
-		public IHttpActionResult Test()
+		public IHttpActionResult getAll(String empresa_id, String limit, String offset)
 		{
-			return Json(vehicleModel.GetAll());
+			String email = "0";
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				email = payload.email;
+			}
+			return Json(vehicleModel.GetAll(limit, offset, empresa_id, email));
 		}
-    }
+
+		[Route("get")]
+		[HttpGet]
+		public IHttpActionResult getDetailVehicle(String id)
+		{
+			return Json(vehicleModel.GetVehicle(id));
+		}
+	}
 }

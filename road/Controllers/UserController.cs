@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Web;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace road
 {
@@ -21,18 +22,19 @@ namespace road
 			if (user != null && user.email != null && user.password != null && user.email.Length <= 100 && user.password.Length <= 100){
 				//HttpContext.Current.Request.UserAgent
 				DataTable response = userModel.Login(user.email, user.password);
-				if (response.Rows[0].ItemArray.GetValue(0).ToString() == "OK")
+				if (response != null && response.Rows[0].ItemArray.GetValue(0).ToString() == "OK")
 				{
 					Token token = new Token();
 					String nombres = response.Rows[0].ItemArray.GetValue(1).ToString();
 					String apellidos = response.Rows[0].ItemArray.GetValue(2).ToString();
 					String foto = response.Rows[0].ItemArray.GetValue(3).ToString();
+					String empresa_id = response.Rows[0].ItemArray.GetValue(4).ToString();
 
-					token.token = util.tokenSesion(nombres, apellidos, user.email, foto);
+					token.token = util.tokenSesion(empresa_id, nombres, apellidos, user.email, foto);
 					return Json(token);
 				}
 				else 
-				{ 
+				{
 					return Json(response);
 				}
 			}
@@ -53,11 +55,11 @@ namespace road
 			    user.email.Length <= 100 && user.password.Length <= 100)
 			{
 				//HttpContext.Current.Request.UserAgent
-				DataTable response = userModel.Signup(user.empresa_id.ToString(), user.nombres, user.apellidos, user.email, user.password);
-				if (response.Rows[0].ItemArray.GetValue(0).ToString() == "OK")
+				DataTable response = userModel.Signup(user.empresa_id, user.nombres, user.apellidos, user.email, user.password);
+				if (response != null && response.Rows[0].ItemArray.GetValue(0).ToString() == "OK")
 				{
 					Token token = new Token();
-					token.token = util.tokenSesion(user.nombres, user.apellidos, user.email, null);
+					token.token = util.tokenSesion(user.empresa_id.ToString(), user.nombres, user.apellidos, user.email, null);
 					return Json(token);
 				}
 				else
@@ -72,31 +74,34 @@ namespace road
 		}
 
 		[Route("permissions")]
-		[HttpPost]
-		public IHttpActionResult Permissions([FromBody] UserModel user)
+		[HttpGet]
+		public IHttpActionResult Permissions()
 		{
-			if (user != null && user.email != null && user.password != null && user.email.Length <= 100 && user.password.Length <= 100)
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
 			{
-				//HttpContext.Current.Request.UserAgent
-				DataTable response = userModel.Login(user.email, user.password);
-				if (response.Rows[0].ItemArray.GetValue(0).ToString() == "OK")
-				{
-					Token token = new Token();
-					String nombres = response.Rows[0].ItemArray.GetValue(1).ToString();
-					String apellidos = response.Rows[0].ItemArray.GetValue(2).ToString();
-					String foto = response.Rows[0].ItemArray.GetValue(3).ToString();
+				UserModel payload = (UserModel)auth[1];
+				return Json(userModel.GetPermissions(payload.email));
+			}
+			else 
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+			}
+		}
 
-					token.token = util.tokenSesion(nombres, apellidos, user.email, foto);
-					return Json(token);
-				}
-				else
-				{
-					return Json(response);
-				}
+		[Route("get-rol")]
+		[HttpGet]
+		public IHttpActionResult GetRols()
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(userModel.GetRols(payload.email));
 			}
 			else
 			{
-				return Json(json);
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
 			}
 		}
 

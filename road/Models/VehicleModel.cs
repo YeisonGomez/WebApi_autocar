@@ -20,9 +20,19 @@ namespace road
 
 		Connection con = new Connection();
 
-		public DataTable GetAll()
+		public DataTable GetAll(String limit, String after, String empresa_id, String email)
 		{
-			DataTable response = con.RunProcedure("CONSULTAR_VEHICULOS", null, null);
+			String[] keys = { "p_limit", "p_after", "p_empresa_id", "p_email" };
+			String[] values = { limit, after, empresa_id, email };
+			DataTable response = con.RunProcedure("GET_VEHICLES", keys, values);
+			return response;
+		}
+
+		public DataTable GetVehicle(String vehicle_id)
+		{
+			String[] keys = { "p_vehicle_id" };
+			String[] values = { vehicle_id };
+			DataTable response = con.RunProcedure("GET_VEHICLE", keys, values);
 			return response;
 		}
 	}

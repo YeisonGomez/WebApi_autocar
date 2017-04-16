@@ -117,6 +117,8 @@
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Models\BranchModel.cs" />
+    <Compile Include="Controllers\ReserveController.cs" />
+    <Compile Include="Models\ReserveModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

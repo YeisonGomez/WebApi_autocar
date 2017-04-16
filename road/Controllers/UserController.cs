@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Newtonsoft.Json;
@@ -35,6 +37,12 @@ namespace road
 				}
 				else 
 				{
+					/*return new System.Web.Http.Results.ResponseMessageResult(
+		                Request.CreateErrorResponse(
+		                    (HttpStatusCode)422,
+		                    new HttpError("Something goes wrong")
+		                )
+		            );*/
 					return Json(response);
 				}
 			}

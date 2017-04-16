@@ -115,6 +115,8 @@
     <Compile Include="Util\Util.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
+    <Compile Include="Models\BranchModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

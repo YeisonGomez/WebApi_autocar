@@ -35,5 +35,14 @@ namespace road
 			DataTable response = con.RunProcedure("GET_VEHICLE", keys, values);
 			return response;
 		}
+
+		public DataTable getReserveVehicle(String vehicle_id)
+		{
+			String[] keys = { "p_vehicle_id" };
+			String[] values = { vehicle_id };
+			DataTable response = con.RunProcedure("GET_RESERVE_VEHICLE", keys, values);
+			return response;
+		}
+
 	}
 }

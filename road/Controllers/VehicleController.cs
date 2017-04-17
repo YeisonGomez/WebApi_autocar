@@ -30,5 +30,12 @@ namespace road
 		{
 			return Json(vehicleModel.GetVehicle(id));
 		}
+
+		[Route("reserve")]
+		[HttpGet]
+		public IHttpActionResult getReserveVehicle(String vehicle_id)
+		{
+			return Json(vehicleModel.getReserveVehicle(vehicle_id));
+		}
 	}
 }

@@ -13,19 +13,19 @@ namespace road.Controllers
     public class ReserveController : ApiController
     {
 		Response json = new Response();
-		UserModel userModel = new UserModel();
+		//UserModel userModel = new UserModel();
 		ReserveModel reserveModel = new ReserveModel();
 		Util util = new Util();
 
 		[Route("pre")]
 		[HttpPost]
-		public IHttpActionResult PreReserve()
+		public IHttpActionResult PreReserve(String fecha_inicio, String fecha_fin, String sucursal_entrega, String vehiculo_id, String sucursal_id, String conductor)
 		{
 			Object[] auth = util.Authorization();
 			if ((String)auth[0] == "OK")
 			{
 				UserModel payload = (UserModel)auth[1];
-				return Json(userModel.GetRols(payload.email));
+				return Json(reserveModel.GetAll(fecha_inicio, fecha_fin, sucursal_entrega, vehiculo_id, payload.id.ToString(), sucursal_id, conductor));
 			}
 			else
 			{

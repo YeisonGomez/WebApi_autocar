@@ -5,6 +5,8 @@ namespace road
 {
 	public class ReserveModel
 	{
+		public String id { get; set; }
+		public String description { get; set; }
 		public String fecha_inicio { get; set; }
 		public String fecha_fin { get; set; }
 		public String sucursal_entrega { get; set; }
@@ -19,6 +21,14 @@ namespace road
 			String[] keys = {"p_fecha_inicia", "p_fecha_final", "p_sucursal_entrega", "p_vehiculo_id", "p_email", "p_sucursal_id", "p_conductor" };
 			String[] values = { fecha_inicio, fecha_fin, sucursal_entrega, vehiculo_id, email, sucursal_id, conductor };
 			DataTable response = con.RunProcedure("RESERVE_VEHICLE", keys, values);
+			return response;
+		}
+
+		public DataTable ReserveReject(String id, String description)
+		{
+			String[] keys = { "p_id", "p_description" };
+			String[] values = { id, description };
+			DataTable response = con.RunProcedure("REJECT_RESERVE", keys, values);
 			return response;
 		}
 	}

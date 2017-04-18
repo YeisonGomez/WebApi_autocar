@@ -32,5 +32,21 @@ namespace road.Controllers
 				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
 			}
 		}
+
+		[Route("reject")]
+		[HttpPost]
+		public IHttpActionResult ReserveReject([FromBody] ReserveModel reserve)
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(reserveModel.ReserveReject(reserve.id, reserve.description));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+
+		}
     }
 }

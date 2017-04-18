@@ -72,5 +72,13 @@ namespace road
 			DataTable respons = con.RunProcedure("GET_ROLS", keys, values);
 			return respons;
 		}
+
+		public DataTable GetUserReserve(String email)
+		{
+			String[] keys = { "p_email" };
+			String[] values = { email };
+			DataTable respons = con.RunProcedure("GET_USER_RESERVE", keys, values);
+			return respons;
+		}
 	}
 }

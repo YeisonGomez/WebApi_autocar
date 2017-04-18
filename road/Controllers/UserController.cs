@@ -113,6 +113,22 @@ namespace road
 			}
 		}
 
+		[Route("get-reserve")]
+		[HttpGet]
+		public IHttpActionResult GetUserReserve()
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(userModel.GetUserReserve(payload.email));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+			}
+		}
+
 		[Route("test")]
 		[HttpGet]
 		public IHttpActionResult Test()

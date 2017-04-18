@@ -128,13 +128,6 @@ namespace road
 				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
 			}
 		}
-
-		[Route("test")]
-		[HttpGet]
-		public IHttpActionResult Test()
-		{
-			return Json("hola");
-		}
 	}
 
 	public class Token {

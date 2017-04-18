@@ -41,12 +41,13 @@ namespace road.Controllers
 			if ((String)auth[0] == "OK")
 			{
 				UserModel payload = (UserModel)auth[1];
-				return Json(reserveModel.ReserveReject(reserve.id, reserve.description));
+				return Json(reserveModel.ReserveReject(payload.email, reserve.id, reserve.description));
 			}
 			else
 			{
 				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
 
+			}
 		}
     }
 }

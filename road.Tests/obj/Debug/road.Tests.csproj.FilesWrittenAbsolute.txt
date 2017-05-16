@@ -1,0 +1,15 @@
+/Users/YeisonGomez/Projects/road/road.Tests/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/road.Tests.pdb
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/road.Tests.dll
+/Users/YeisonGomez/Projects/road/road.Tests/obj/Debug/road.Tests.dll
+/Users/YeisonGomez/Projects/road/road.Tests/obj/Debug/road.Tests.pdb
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/System.Net.Http.Formatting.dll
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/System.Web.Http.dll
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/System.Web.Http.WebHost.dll
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/Newtonsoft.Json.dll
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/nunit.framework.dll
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/road.dll
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/road.dll.mdb
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/road.pdb
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/MySql.Data.dll
+/Users/YeisonGomez/Projects/road/road.Tests/bin/Debug/JWT.dll

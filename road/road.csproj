@@ -122,6 +122,8 @@
     <Compile Include="Models\FavoriteModel.cs" />
     <Compile Include="Controllers\PaysheetController.cs" />
     <Compile Include="Models\PaysheetModel.cs" />
+    <Compile Include="Controllers\ProviderController.cs" />
+    <Compile Include="Models\ProviderModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

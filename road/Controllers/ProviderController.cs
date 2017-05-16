@@ -9,34 +9,28 @@ using Newtonsoft.Json;
 
 namespace road.Controllers
 {
-	[RoutePrefix("api/favorite")]
-    public class FavoriteController : ApiController
-    {
-		FavoriteModel favoriteModel = new FavoriteModel();
+	[RoutePrefix("api/provider")]
+	public class ProviderController : ApiController
+	{
+		ProviderModel providerModel = new ProviderModel();
 		Response json = new Response();
 		Util util = new Util();
 
-		[Route("user-add")]
-		[HttpPost]
-		public IHttpActionResult AddFavorite([FromBody] ReserveModel vehicle)
+		[Route("get-vehicles")]
+		[HttpGet]
+		public IHttpActionResult getVehicleProvider(string type)
 		{
 			Object[] auth = util.Authorization();
 			if ((String)auth[0] == "OK")
 			{
 				UserModel payload = (UserModel)auth[1];
-				if (vehicle.vehiculo_id != null)
-				{
-					return Json(favoriteModel.AddFavorite(payload.email, vehicle.vehiculo_id, vehicle.state));
-				}
-				else
-				{
-					return Json(json);
-				}
+				return Json(providerModel.getVehicleProvider(payload.email));
 			}
 			else
 			{
 				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+
 			}
 		}
-    }
+	}
 }

@@ -4,18 +4,18 @@ using MySql.Data.MySqlClient;
 
 namespace road
 {
-	public class FavoriteModel
-	{
+	public class PaysheetModel
+	{	
 		public Response response = new Response();
 		Connection con = new Connection();
 
-		public DataTable AddFavorite(string email, string vehicle_id)
+		public DataTable Payment(string email, string type)
 		{
 			try
 			{
-				String[] keys = { "p_email", "p_vehicle_id" };
-				String[] values = { email, vehicle_id };
-				DataTable response = con.RunProcedure("ADD_FAVORITE", keys, values);
+				String[] keys = { "p_email", "p_type" };
+				String[] values = { email, type };
+				DataTable response = con.RunProcedure("GET_PAYMENT", keys, values);
 				return response;
 			}
 			catch (Exception ex)
@@ -26,3 +26,5 @@ namespace road
 		}
 	}
 }
+
+

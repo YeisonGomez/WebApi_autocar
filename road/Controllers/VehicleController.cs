@@ -26,9 +26,9 @@ namespace road
 
 		[Route("get")]
 		[HttpGet]
-		public IHttpActionResult getDetailVehicle(String id)
+		public IHttpActionResult getDetailVehicle(String id, String email)
 		{
-			return Json(vehicleModel.GetVehicle(id));
+			return Json(vehicleModel.GetVehicle(id, email));
 		}
 
 		[Route("reserve")]

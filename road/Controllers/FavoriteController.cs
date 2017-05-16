@@ -26,7 +26,7 @@ namespace road.Controllers
 				UserModel payload = (UserModel)auth[1];
 				if (vehicle.vehiculo_id != null)
 				{
-					return Json(favoriteModel.AddFavorite(payload.id.ToString(), vehicle.vehiculo_id));
+					return Json(favoriteModel.AddFavorite(payload.email, vehicle.vehiculo_id));
 				}
 				else
 				{

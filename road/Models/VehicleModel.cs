@@ -28,10 +28,10 @@ namespace road
 			return response;
 		}
 
-		public DataTable GetVehicle(String vehicle_id)
+		public DataTable GetVehicle(String vehicle_id, String email)
 		{
-			String[] keys = { "p_vehicle_id" };
-			String[] values = { vehicle_id };
+			String[] keys = { "p_vehicle_id", "p_email" };
+			String[] values = { vehicle_id, email };
 			DataTable response = con.RunProcedure("GET_VEHICLE", keys, values);
 			return response;
 		}

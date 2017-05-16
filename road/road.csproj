@@ -118,6 +118,10 @@
     <Compile Include="Models\BranchModel.cs" />
     <Compile Include="Controllers\ReserveController.cs" />
     <Compile Include="Models\ReserveModel.cs" />
+    <Compile Include="Controllers\FavoriteController.cs" />
+    <Compile Include="Models\FavoriteModel.cs" />
+    <Compile Include="Controllers\PaysheetController.cs" />
+    <Compile Include="Models\PaysheetModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

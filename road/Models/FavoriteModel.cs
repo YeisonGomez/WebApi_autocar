@@ -9,12 +9,12 @@ namespace road
 		public Response response = new Response();
 		Connection con = new Connection();
 
-		public DataTable AddFavorite(string email, string vehicle_id)
+		public DataTable AddFavorite(string email, string vehicle_id, string state)
 		{
 			try
 			{
-				String[] keys = { "p_email", "p_vehicle_id" };
-				String[] values = { email, vehicle_id };
+				String[] keys = { "p_email", "p_vehicle_id", "p_state" };
+				String[] values = { email, vehicle_id, state };
 				DataTable response = con.RunProcedure("ADD_FAVORITE", keys, values);
 				return response;
 			}

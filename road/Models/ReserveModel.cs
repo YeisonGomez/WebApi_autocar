@@ -13,6 +13,7 @@ namespace road
 		public String vehiculo_id { get; set; }
 		public String sucursal_id { get; set; }
 		public String conductor { get; set; }
+		public String state { get; set; }
 
 		Connection con = new Connection();
 

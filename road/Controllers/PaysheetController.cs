@@ -31,6 +31,23 @@ namespace road.Controllers
 				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
 			}
 		}
+
+		[Route("history-payment")]
+		[HttpGet]
+		public IHttpActionResult getHistoryPayment(string contract_id)
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(paysheetModel.GetHistoryPayment(payload.email, contract_id));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+
+			}
+		}
     }
 }
 

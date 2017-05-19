@@ -18,7 +18,7 @@ namespace road.Controllers
 
 		[Route("get-vehicles")]
 		[HttpGet]
-		public IHttpActionResult getVehicleProvider(string type)
+		public IHttpActionResult getVehicleProvider()
 		{
 			Object[] auth = util.Authorization();
 			if ((String)auth[0] == "OK")

@@ -32,5 +32,13 @@ namespace road
 			DataTable response = con.RunProcedure("REJECT_RESERVE", keys, values);
 			return response;
 		}
+
+		public DataTable getClienteReserve(String email)
+		{
+			String[] keys = { "p_email" };
+			String[] values = { email };
+			DataTable response = con.RunProcedure("GET_RESERVES_CLIENT", keys, values);
+			return response;
+		}
 	}
 }

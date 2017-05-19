@@ -49,5 +49,22 @@ namespace road.Controllers
 
 			}
 		}
+
+		[Route("get-reserve-client")]
+		[HttpPost]
+		public IHttpActionResult getClientReserve()
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(reserveModel.getClienteReserve(payload.email));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+
+			}
+		}
     }
 }

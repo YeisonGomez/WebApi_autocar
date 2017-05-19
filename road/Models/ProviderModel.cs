@@ -23,5 +23,21 @@ namespace road
 				return null;
 			}
 		}
+
+		public DataTable getContracts(string email)
+		{
+			try
+			{
+				String[] keys = { "p_email" };
+				String[] values = { email };
+				DataTable response = con.RunProcedure("GET_CONTRACTS", keys, values);
+				return response;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				return null;
+			}
+		}
 	}
 }

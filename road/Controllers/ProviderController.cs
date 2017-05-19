@@ -32,5 +32,21 @@ namespace road.Controllers
 
 			}
 		}
+
+		[Route("contracts")]
+		[HttpGet]
+		public IHttpActionResult getContracts()
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(providerModel.getContracts(payload.email));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+			}	
+		}
 	}
 }

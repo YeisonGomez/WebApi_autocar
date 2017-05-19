@@ -51,7 +51,7 @@ namespace road.Controllers
 		}
 
 		[Route("get-reserve-client")]
-		[HttpPost]
+		[HttpGet]
 		public IHttpActionResult getClientReserve()
 		{
 			Object[] auth = util.Authorization();

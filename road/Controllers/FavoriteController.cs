@@ -38,5 +38,22 @@ namespace road.Controllers
 				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
 			}
 		}
+
+		[Route("user-favorites")]
+		[HttpGet]
+		public IHttpActionResult GetFavorites()
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(favoriteModel.GetFavorites(payload.email));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+
+			}
+		}
     }
 }

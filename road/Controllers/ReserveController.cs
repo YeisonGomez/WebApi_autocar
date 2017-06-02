@@ -52,19 +52,36 @@ namespace road.Controllers
 
 		[Route("get-reserve-client")]
 		[HttpGet]
-		public IHttpActionResult getClientReserve()
+		public IHttpActionResult getClientReserve(string history)
 		{
 			Object[] auth = util.Authorization();
 			if ((String)auth[0] == "OK")
 			{
 				UserModel payload = (UserModel)auth[1];
-				return Json(reserveModel.getClienteReserve(payload.email));
+				return Json(reserveModel.getClienteReserve(payload.email, history));
 			}
 			else
 			{
 				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
 
 			}
+		}
+
+		[Route("get-all-reserve")]
+		[HttpGet]
+		public IHttpActionResult getAllReserve(string states, String limit, String offset)
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(reserveModel.getAllReserve(payload.email, states, limit, offset));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+			}
+
 		}
     }
 }

@@ -1,12 +1,5 @@
 ﻿<Properties StartupConfiguration="{D8408D4A-8175-49C1-87D4-B68681A49046}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="road/Models/ProviderModel.cs">
-    <Files>
-      <File FileName="road/Controllers/ReserveController.cs" Line="43" Column="27" />
-      <File FileName="road/Models/ReserveModel.cs" Line="36" Column="37" />
-      <File FileName="road/Controllers/ProviderController.cs" Line="39" Column="4" />
-      <File FileName="road/Models/ProviderModel.cs" Line="40" Column="4" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.ItemProperties.road PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

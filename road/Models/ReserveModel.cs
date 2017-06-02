@@ -33,11 +33,19 @@ namespace road
 			return response;
 		}
 
-		public DataTable getClienteReserve(String email)
+		public DataTable getClienteReserve(String email, String history)
 		{
-			String[] keys = { "p_email" };
-			String[] values = { email };
+			String[] keys = { "p_email", "p_history" };
+			String[] values = { email, history };
 			DataTable response = con.RunProcedure("GET_RESERVES_CLIENT", keys, values);
+			return response;
+		}
+
+		public DataTable getAllReserve(String admin_email, String states, String limit, String offset)
+		{
+			String[] keys = { "p_admin_email", "states", "p_limit", "p_offset" };
+			String[] values = { admin_email, states, limit, offset };
+			DataTable response = con.RunProcedure("GET_ALL_RESERVE", keys, values);
 			return response;
 		}
 	}

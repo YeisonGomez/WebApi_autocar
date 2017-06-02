@@ -24,5 +24,21 @@ namespace road
 				return null;
 			}
 		}
+
+		public DataTable GetFavorites(string email)
+		{
+			try
+			{
+				String[] keys = { "p_email" };
+				String[] values = { email };
+				DataTable response = con.RunProcedure("GET_FAVORITES_USER", keys, values);
+				return response;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				return null;
+			}
+		}
 	}
 }

@@ -21,7 +21,8 @@ namespace road
 		[HttpPost]
 		public IHttpActionResult Login([FromBody] UserModel user)
 		{
-			if (user != null && user.email != null && user.password != null && user.email.Length <= 100 && user.password.Length <= 100){
+			if (user != null && user.email != null && user.password != null && user.email.Length <= 100 && user.password.Length <= 100)
+			{
 				//HttpContext.Current.Request.UserAgent
 				DataTable response = userModel.Login(user.email, user.password);
 				if (response != null && response.Rows[0].ItemArray.GetValue(0).ToString() == "OK")
@@ -35,7 +36,7 @@ namespace road
 					token.token = util.tokenSesion(empresa_id, nombres, apellidos, user.email, foto);
 					return Json(token);
 				}
-				else 
+				else
 				{
 					/*return new System.Web.Http.Results.ResponseMessageResult(
 		                Request.CreateErrorResponse(
@@ -57,10 +58,10 @@ namespace road
 		public IHttpActionResult Signup([FromBody] UserModel user)
 		{
 			if (user != null &&
-			    user.nombres != null && user.nombres.Length <= 100 && 
-			    user.apellidos != null && user.apellidos.Length <= 100 && 
-			    user.email != null && user.password != null && 
-			    user.email.Length <= 100 && user.password.Length <= 100)
+				user.nombres != null && user.nombres.Length <= 100 &&
+				user.apellidos != null && user.apellidos.Length <= 100 &&
+				user.email != null && user.password != null &&
+				user.email.Length <= 100 && user.password.Length <= 100)
 			{
 				//HttpContext.Current.Request.UserAgent
 				DataTable response = userModel.Signup(user.empresa_id, user.nombres, user.apellidos, user.email, user.password);
@@ -91,7 +92,7 @@ namespace road
 				UserModel payload = (UserModel)auth[1];
 				return Json(userModel.GetPermissions(payload.email));
 			}
-			else 
+			else
 			{
 				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
 			}
@@ -128,10 +129,82 @@ namespace road
 				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
 			}
 		}
+
+		[Route("get-users")]
+		[HttpGet]
+		public IHttpActionResult GetUsers()
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(userModel.GetUsers(payload.email));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+			}
+		}
+
+		[Route("get-all-rols")]
+		[HttpGet]
+		public IHttpActionResult GetAllRols()
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(userModel.GetAllRols());
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+			}
+		}
+
+		[Route("change-state")]
+		[HttpPost]
+		public IHttpActionResult ChangeState([FromBody] UserModel user)
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(userModel.ChangeState(payload.email, user.email, user.estado));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+			}
+		}
+
+		[Route("change-rols")]
+		[HttpPost]
+		public IHttpActionResult ChangeRols([FromBody] changeRol obj)
+		{
+			Object[] auth = util.Authorization();
+			if ((String)auth[0] == "OK")
+			{
+				UserModel payload = (UserModel)auth[1];
+				return Json(userModel.ChangeRols(payload.email, obj.user_email, obj.client, obj.admin, obj.employee, obj.provider));
+			}
+			else
+			{
+				return Json(json.MysqlException((String)auth[1], (String)auth[2]));
+			}
+		}
 	}
 
-	public class Token {
+	public class Token
+	{
 		public String token { get; set; }
 	}
 
+	public class changeRol {
+		public String user_email { get; set; }
+		public String client { get; set; }
+		public String admin { get; set; }
+		public String employee { get; set; }
+		public String provider { get; set; }
+	}
 }

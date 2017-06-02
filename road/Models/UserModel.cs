@@ -17,6 +17,8 @@ namespace road
 		public int celular { get; set; }
 		public int fecha_registro { get; set; }
 		public String foto { get; set; }
+		public String estado { get; set; }
+		public String util { get; set; }
 
 		public UserModel()
 		{
@@ -80,5 +82,38 @@ namespace road
 			DataTable respons = con.RunProcedure("GET_USER_RESERVE", keys, values);
 			return respons;
 		}
+
+		public DataTable GetUsers(String email)
+		{
+			String[] keys = { "p_email" };
+			String[] values = { email };
+			DataTable respons = con.RunProcedure("GET_LIST_USERS", keys, values);
+			return respons;
+		}
+
+		public DataTable GetAllRols()
+		{
+			String[] keys = { };
+			String[] values = { };
+			DataTable respons = con.RunProcedure("GET_ALL_ROLS", keys, values);
+			return respons;
+		}
+
+		public DataTable ChangeState(String email, String user_email, String user_estado)
+		{
+			String[] keys = { "p_email", "user_email", "user_estado" };
+			String[] values = { email, user_email, user_estado };
+			DataTable respons = con.RunProcedure("USER_CHANGE_STATE", keys, values);
+			return respons;
+		}
+
+		public DataTable ChangeRols(String admin_email, String user_email, String client, String admin, String employee, String provider)
+		{
+			String[] keys = { "p_admin_email", "p_user_email", "p_client", "p_admin", "p_employee", "p_provider" };
+			String[] values = { admin_email, user_email, client, admin, employee, provider };
+			DataTable respons = con.RunProcedure("USER_CHANGE_ROL", keys, values);
+			return respons;
+		}
+
 	}
 }
